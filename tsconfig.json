@@ -4,6 +4,8 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "importHelpers": true,
     "noEmitHelpers": true,
     "resolveJsonModule": true

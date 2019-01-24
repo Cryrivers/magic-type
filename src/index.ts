@@ -1,14 +1,13 @@
 import { build } from "@manta-style/builder-typescript";
-import * as fs from "fs";
-import * as path from "path";
-import * as process from "process";
-import * as program from "commander";
-import * as packageJson from "../package.json";
-import * as spawn from "cross-spawn";
+import fs from "fs";
+import path from "path";
+import process from "process";
+import program from "commander";
+import packageJson from "../package.json";
+import spawn from "cross-spawn";
 import chalk from "chalk";
-import { highlight } from "cli-highlight";
-
-import findRoot = require("find-root");
+import { findRoot } from "./findRoot";
+import { generateSuperGuideBasedOnFile } from "./superGuide";
 
 program
   .version(packageJson.version)
@@ -19,33 +18,43 @@ program
     "Transpile modules to CommonJS",
     undefined,
     true
-  );
+  )
+  .parse(process.argv);
 
-const { input, outputDir, transpileToCjs: transpileModule } = program;
-const enum PackageManager {
-  NPM,
-  YARN
-}
+const mantaStyleVersion = packageJson.dependencies[
+  "@manta-style/builder-typescript"
+].replace(/[^\~]/, "");
 
-function detectPackageManager() {
+const { inputFile, outputDir, transpileToCjs: transpileModule } = program;
+
+console.log("Input File:", inputFile), console.log("Output Dir:", outputDir);
+
+function detectPackageManager(): "yarn" | "npm" {
   const projectRoot = findRoot(process.cwd());
-  return fs.existsSync(path.join(projectRoot, "yarn.lock"))
-    ? PackageManager.YARN
-    : PackageManager.NPM;
+  return fs.existsSync(path.join(projectRoot, "yarn.lock")) ? "yarn" : "npm";
 }
 
 function compileMagicTypes() {
+  console.log(chalk.yellowBright("\n- 🔧 Install Dependencies...\n"));
   console.log(
-    chalk.yellowBright("\n- Install Dependencies Required by MagicType...\n")
+    chalk.yellowBright("  MagicType requires following dependencies:\n")
   );
+  console.log(
+    [
+      `  - @manta-style/runtime@${mantaStyleVersion}`,
+      `  - @manta-style/typescript-helpers@${mantaStyleVersion}`
+    ].join("\n")
+  );
+  console.log("\n");
   const packageManager = detectPackageManager();
-  if (packageManager === PackageManager.YARN) {
+  if (packageManager === "yarn") {
     spawn.sync(
       "yarn",
       [
         "add",
-        `@manta-style/runtime@${packageJson.version}`,
-        `@manta-style/typescript-helpers@${packageJson.version}`
+        `@manta-style/runtime@${mantaStyleVersion}`,
+        `@manta-style/typescript-helpers@${mantaStyleVersion}`,
+        "--silent"
       ],
       { stdio: "inherit" }
     );
@@ -54,17 +63,18 @@ function compileMagicTypes() {
       "npm",
       [
         "install",
-        `@manta-style/runtime@${packageJson.version}`,
-        `@manta-style/typescript-helpers@${packageJson.version}`
+        `@manta-style/runtime@${mantaStyleVersion}`,
+        `@manta-style/typescript-helpers@${mantaStyleVersion}`,
+        "--silent"
       ],
       { stdio: "inherit" }
     );
   }
-  console.log(chalk.yellowBright("\n- Compile Your Type Definitions...\n"));
+  console.log(chalk.yellowBright("\n- 📖 Compile Your Type Definitions...\n"));
 
   const result = build({
-    fileName: input,
-    destDir: outputDir,
+    fileName: path.resolve(inputFile),
+    destDir: path.resolve(outputDir),
     transpileModule
   });
 
@@ -72,25 +82,14 @@ function compileMagicTypes() {
 
   console.log(
     chalk.yellowBright(
-      "\n- Done, now you can use your type definitions at runtime. \n"
+      "\n- 🎉 Done, now you can use your type definitions at runtime. \n"
     )
   );
+  generateSuperGuideBasedOnFile(path.resolve(inputFile));
+
   console.log(
-    highlight(
-      `
-  import { Type } from './a';
-
-  // Use Magic Type as TypeScript types
-  type MyType = {
-      key: Type
-  };
-
-  // Use Magic Type as JavaScript object
-  Type.validate(input);
-  Type.deriveLiteral([]).mock();
-  Type.format(input);
-  `,
-      { language: "typescript" }
+    chalk.yellowBright(
+      "\n- ✨ Enjoy Magic Type (https://github.com/Cryrivers/magic-type)\n"
     )
   );
 }
