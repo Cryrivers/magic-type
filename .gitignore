@@ -1,0 +1,7 @@
+node_modules/
+lerna-debug.log
+lib/
+.mantastyle-tmp/
+coverage/
+yarn-error.log
+.idea

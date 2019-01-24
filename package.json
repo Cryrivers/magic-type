@@ -1,0 +1,19 @@
+{
+  "name": "magic-type",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@manta-style/builder-typescript": "^0.2.0-alpha.13",
+    "@types/commander": "^2.12.2",
+    "@types/cross-spawn": "^6.0.0",
+    "@types/find-root": "^1.1.1",
+    "@types/node": "^10.12.18",
+    "commander": "^2.19.0",
+    "cross-spawn": "^6.0.5",
+    "find-root": "^1.1.0",
+    "rollup": "^1.1.2",
+    "rollup-plugin-typescript": "^1.0.0",
+    "tslib": "^1.9.3"
+  }
+}
