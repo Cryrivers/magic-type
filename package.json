@@ -1,19 +1,29 @@
 {
   "name": "magic-type",
-  "version": "0.0.0",
+  "version": "0.2.0-alpha.13",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
   "devDependencies": {
     "@manta-style/builder-typescript": "^0.2.0-alpha.13",
+    "@types/chalk": "^2.2.0",
     "@types/commander": "^2.12.2",
     "@types/cross-spawn": "^6.0.0",
     "@types/find-root": "^1.1.1",
     "@types/node": "^10.12.18",
+    "chalk": "^2.4.2",
+    "cli-highlight": "^2.0.0",
     "commander": "^2.19.0",
     "cross-spawn": "^6.0.5",
     "find-root": "^1.1.0",
     "rollup": "^1.1.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-typescript": "^1.0.0",
-    "tslib": "^1.9.3"
+    "tslib": "^1.9.3",
+    "typescript": "^3.2.4"
   }
 }
