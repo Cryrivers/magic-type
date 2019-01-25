@@ -19,13 +19,13 @@ yarn global add magic-type
 npm install -g magic-type
 ```
 
-You can also use Magic Type locally as well.
+You could also use Magic Type locally as well.
 
 # Usage
 
 ## Compile TypeScript definitions
 
-[![asciicast](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi.png)](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi?speed=0.5)
+[![asciicast](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi.png)](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi?speed=0.75)
 
 ## Use magic types at runtime
 
