@@ -27,9 +27,18 @@ You could also use Magic Type locally as well.
 
 [![asciicast](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi.png)](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi?speed=0.75)
 
-## Use magic types at runtime
+```
+Usage: magictype [options]
 
-`allowJs` should be enabled in `tsconfig.json`
+Options:
+  -V, --version          output the version number
+  -i --inputFile <file>  The entrypoint of files to be compiled
+  -o --outputDir <dir>   The output directory of compiled files
+  -t --transpileToCjs    Transpile modules to CommonJS (Otherwise it will output ES modules)
+  -h, --help             output usage information
+```
+
+## Use magic types at runtime
 
 ```typescript
 import { MyAPIRequest } from "./api";
