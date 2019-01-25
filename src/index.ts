@@ -14,10 +14,8 @@ program
   .option("-i --inputFile <file>", "The entrypoint of files to be compiled")
   .option("-o --outputDir <dir>", "The output directory of compiled files")
   .option(
-    "-t --transpileToCjs",
-    "Transpile modules to CommonJS",
-    undefined,
-    true
+    "-c --cjs",
+    "Transpile modules to CommonJS (Otherwise it will output ES modules)"
   )
   .parse(process.argv);
 
@@ -25,7 +23,7 @@ const mantaStyleVersion = packageJson.dependencies[
   "@manta-style/builder-typescript"
 ].replace(/[^\~]/, "");
 
-const { inputFile, outputDir, transpileToCjs: transpileModule } = program;
+const { inputFile, outputDir, cjs: transpileModule } = program;
 
 console.log("Input File:", inputFile), console.log("Output Dir:", outputDir);
 

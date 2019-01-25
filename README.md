@@ -34,7 +34,7 @@ Options:
   -V, --version          output the version number
   -i --inputFile <file>  The entrypoint of files to be compiled
   -o --outputDir <dir>   The output directory of compiled files
-  -t --transpileToCjs    Transpile modules to CommonJS (Otherwise it will output ES modules)
+  -c --cjs               Transpile modules to CommonJS (Otherwise it will output ES modules)
   -h, --help             output usage information
 ```
 
