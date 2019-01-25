@@ -29,6 +29,8 @@ You could also use Magic Type locally as well.
 
 ## Use magic types at runtime
 
+`allowJs` should be enabled in `tsconfig.json`
+
 ```typescript
 import { MyAPIRequest } from "./api";
 
