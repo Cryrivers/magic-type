@@ -1,7 +1,7 @@
 <h1 align="center">
   Magic Type
 </h1>
-<p align="center">🚀 Use Your TypeScript definitions at runtime. Powered by <a href="https://github.com/Cryrivers/manta-style" target="_blank">Manta Style</a>.</p>
+<p align="center">🎩 Use Your TypeScript definitions at runtime. Powered by <a href="https://github.com/Cryrivers/manta-style" target="_blank">Manta Style</a>.</p>
 <p align="center">
 <img src="https://img.shields.io/npm/v/magic-type.svg?style=flat-square" alt="version">
 </p>
