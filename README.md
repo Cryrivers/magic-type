@@ -26,6 +26,16 @@ You could also use Magic Type locally as well.
 
 # Usage
 
+Let's take the following code as an example.
+
+```typescript
+// typings/api.ts
+export type MyAPIRequest = {
+  time: number;
+  input: string;
+};
+```
+
 ## Compile TypeScript definitions
 
 [![asciicast](https://asciinema.org/a/VAwlNHFdww9mqracrAJJDWTlf.png)](https://asciinema.org/a/VAwlNHFdww9mqracrAJJDWTlf?speed=0.85)
@@ -68,6 +78,9 @@ function getMockData() {
   return MyAPIRequest.deriveLiteral([]).mock();
 }
 ```
+
+Actual Screenshot:
+![Actual Screenshot](https://raw.githubusercontent.com/Cryrivers/magic-type/master/media/magic-type-runtime-example.png)
 
 # Unsupported Syntax
 
