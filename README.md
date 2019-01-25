@@ -55,6 +55,17 @@ function getMockData() {
 }
 ```
 
+# Unsupported Syntax
+
+Please be noted there's no warnings against unsupported syntax yet (And Magic Type may crash as well).
+Please kindly check by yourself.
+
+- `extends` keyword in `interface` declaration will be ignored.
+- Union (`A | B`) and intersection(`A & B`) on index signatures are not supported.
+- Functions
+- `infer` keyword
+- `ReturnType<T>` and `InstanceType<T>` are not supported due to unsupported `infer` keyword and functions.
+
 # License
 
 Magic Type is [MIT licensed](https://github.com/Cryrivers/magic-type/blob/master/LICENSE)
