@@ -33,9 +33,9 @@ function detectPackageManager(): "yarn" | "npm" {
   return fs.existsSync(path.join(projectRoot, "yarn.lock")) ? "yarn" : "npm";
 }
 
-function fatalError(message: string) {
+function fatalError(message: string): never {
   console.log(chalk.red(`Error: ${message}\n`));
-  process.exit(1);
+  return process.exit(1);
 }
 
 function compileMagicTypes() {
