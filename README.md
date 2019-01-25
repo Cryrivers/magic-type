@@ -28,7 +28,7 @@ You could also use Magic Type locally as well.
 
 ## Compile TypeScript definitions
 
-[![asciicast](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi.png)](https://asciinema.org/a/n3u9Z9x8Nki3C6OApnf6CFaDi?speed=0.75)
+[![asciicast](https://asciinema.org/a/VAwlNHFdww9mqracrAJJDWTlf.png)](https://asciinema.org/a/VAwlNHFdww9mqracrAJJDWTlf?speed=0.85)
 
 ```
 Usage: magictype [options]
