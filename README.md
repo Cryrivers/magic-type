@@ -79,8 +79,11 @@ function getMockData() {
 }
 ```
 
-Actual Screenshot:
-![Actual Screenshot](https://raw.githubusercontent.com/Cryrivers/magic-type/master/media/magic-type-runtime-example.png)
+- Developer Experience with TypeScript's [type guard](https://basarat.gitbooks.io/typescript/docs/types/typeGuard.html#user-defined-type-guards)
+  ![Developer Experience](https://raw.githubusercontent.com/Cryrivers/magic-type/master/media/dev-experience.png)
+
+- Actual Screenshot:
+  ![Actual Screenshot](https://raw.githubusercontent.com/Cryrivers/magic-type/master/media/magic-type-runtime-example.png)
 
 # Unsupported Syntax
 
