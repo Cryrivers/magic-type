@@ -25,14 +25,32 @@ const mantaStyleVersion = packageJson.dependencies[
 
 const { inputFile, outputDir, cjs: transpileModule } = program;
 
-console.log("Input File:", inputFile), console.log("Output Dir:", outputDir);
+console.log(chalk`🎩  {yellow.bold Magic Type} ${packageJson.version}`);
+console.log(chalk`🚀  {dim Manta Style Runtime: ${mantaStyleVersion}}\n`);
 
 function detectPackageManager(): "yarn" | "npm" {
   const projectRoot = findRoot(process.cwd());
   return fs.existsSync(path.join(projectRoot, "yarn.lock")) ? "yarn" : "npm";
 }
 
+function fatalError(message: string) {
+  console.log(chalk.red(`Error: ${message}\n`));
+  process.exit(1);
+}
+
 function compileMagicTypes() {
+  // Prereq Check
+  if (!inputFile) {
+    fatalError("Please specify input file by using `-i` or `--inputFile`.");
+  }
+
+  if (!outputDir) {
+    fatalError(
+      "Please specify output directory by using `-o` or `--outputDir`."
+    );
+  }
+
+  // Install Dependencies
   console.log(chalk.yellowBright("\n- 🔧 Install Dependencies...\n"));
   console.log(
     chalk.yellowBright("  MagicType requires following dependencies:\n")

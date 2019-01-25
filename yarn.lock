@@ -612,12 +612,26 @@
   dependencies:
     lodash-es "^4.17.11"
 
+"@manta-style/runtime@0.2.0-alpha.13":
+  version "0.2.0-alpha.13"
+  resolved "https://registry.yarnpkg.com/@manta-style/runtime/-/runtime-0.2.0-alpha.13.tgz#dbc747ebdfd663dd03b6f4e0c53450334709c949"
+  integrity sha512-xm9yuT9XeJY+AbnCdf82UA0W8I2AIa3+L3i5bK4z1Zpt/CB8rh5aj1aglQBbt+a54MYqZi3omDhl5y0Z3FYAtQ==
+  dependencies:
+    "@manta-style/core" "^0.2.0-alpha.13"
+    lodash-es "^4.17.11"
+    tslib "^1.9.3"
+
 "@manta-style/test-helpers@^0.2.0-alpha.13":
   version "0.2.0-alpha.13"
   resolved "https://registry.yarnpkg.com/@manta-style/test-helpers/-/test-helpers-0.2.0-alpha.13.tgz#fd033c4cddd4652724046d1bf79787e2fdfb67a4"
   integrity sha512-/aZPFW0vN3grhMwJe8dxVL8PjtOyv+h1CtEz5wRY+vQYQHpFumYxUXdITKGK3wP4lCYEX6G8zKwAf0CWpGPZRg==
   dependencies:
     prettier "^1.16.1"
+
+"@manta-style/typescript-helpers@0.2.0-alpha.13":
+  version "0.2.0-alpha.13"
+  resolved "https://registry.yarnpkg.com/@manta-style/typescript-helpers/-/typescript-helpers-0.2.0-alpha.13.tgz#535b939e0b80e267ef3cf8954dfbd0f76d6d6a3f"
+  integrity sha512-xLLDhGTeaC5LLTTrOsCzCmKD4Dwj50sYolNgizqTWthaVHTw3tRID8crc3WM7p4flx3MopA/OUzVJsg6nEA+/g==
 
 "@types/boxen@^2.1.0":
   version "2.1.0"
