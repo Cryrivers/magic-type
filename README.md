@@ -4,6 +4,7 @@
 <p align="center">🎩 Use Your TypeScript definitions at runtime. Powered by <a href="https://github.com/Cryrivers/manta-style" target="_blank">Manta Style</a>.</p>
 <p align="center">
 <img src="https://img.shields.io/npm/v/magic-type.svg?style=flat-square" alt="version">
+<a href="https://github.com/Cryrivers/magic-type/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Cryrivers/magic-type.svg?style=flat-square" alt="GitHub" /></a>
 </p>
 
 ---

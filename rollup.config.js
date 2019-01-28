@@ -3,6 +3,7 @@ const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const commonJs = require("rollup-plugin-commonjs");
 const packageJson = require("./package.json");
+const { uglify } = require("rollup-plugin-uglify");
 
 const external = [
   ...Object.keys(packageJson.dependencies),
@@ -25,5 +26,5 @@ module.exports = {
     banner: "#!/usr/bin/env node",
     format: "cjs"
   },
-  plugins: [nodeResolve(), commonJs(), typescript(), json()]
+  plugins: [nodeResolve(), commonJs(), typescript(), json(), uglify()]
 };
