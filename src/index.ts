@@ -38,6 +38,19 @@ function fatalError(message: string): never {
   return process.exit(1);
 }
 
+function packageManagerInstall(...bundleNames: string[]) {
+  const packageManager = detectPackageManager();
+  if (packageManager === "yarn") {
+    spawn.sync("yarn", ["add", ...bundleNames, "--silent"], {
+      stdio: "inherit"
+    });
+  } else {
+    spawn.sync("npm", ["install", ...bundleNames, "--silent"], {
+      stdio: "inherit"
+    });
+  }
+}
+
 function compileMagicTypes() {
   // Prereq Check
   if (!inputFile) {
@@ -62,30 +75,11 @@ function compileMagicTypes() {
     ].join("\n")
   );
   console.log("\n");
-  const packageManager = detectPackageManager();
-  if (packageManager === "yarn") {
-    spawn.sync(
-      "yarn",
-      [
-        "add",
-        `@manta-style/runtime@${mantaStyleVersion}`,
-        `@manta-style/typescript-helpers@${mantaStyleVersion}`,
-        "--silent"
-      ],
-      { stdio: "inherit" }
-    );
-  } else {
-    spawn.sync(
-      "npm",
-      [
-        "install",
-        `@manta-style/runtime@${mantaStyleVersion}`,
-        `@manta-style/typescript-helpers@${mantaStyleVersion}`,
-        "--silent"
-      ],
-      { stdio: "inherit" }
-    );
-  }
+
+  packageManagerInstall(
+    `@manta-style/runtime@${mantaStyleVersion}`,
+    `@manta-style/typescript-helpers@${mantaStyleVersion}`
+  );
   console.log(chalk.yellowBright("\n- 📖 Compile Your Type Definitions...\n"));
 
   const result = build({
