@@ -78,7 +78,9 @@ function compileMagicTypes() {
 
   packageManagerInstall(
     `@manta-style/runtime@${mantaStyleVersion}`,
-    `@manta-style/typescript-helpers@${mantaStyleVersion}`
+    `@manta-style/typescript-helpers@${mantaStyleVersion}`,
+    `@manta-style/mock-example@${mantaStyleVersion}`,
+    `@manta-style/mock-range@${mantaStyleVersion}`
   );
   console.log(chalk.yellowBright("\n- 📖 Compile Your Type Definitions...\n"));
 
