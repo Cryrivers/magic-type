@@ -613,12 +613,42 @@
   dependencies:
     lodash-es "^4.17.11"
 
+"@manta-style/mock-example@0.2.0-alpha.14":
+  version "0.2.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@manta-style/mock-example/-/mock-example-0.2.0-alpha.14.tgz#dce975b0ce60139e8808bd68d79f013e41d66e57"
+  integrity sha512-GBUBK3O1CgqsIYYhoRgadm9BmDj8CI2KUF4utnJM2Xw0Va8tflh6ODGf7uXS5L43xoZGONIL6Cjg4q9qhj1GKQ==
+  dependencies:
+    "@manta-style/core" "^0.2.0-alpha.14"
+    lodash-es "^4.17.11"
+
+"@manta-style/mock-range@0.2.0-alpha.14":
+  version "0.2.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@manta-style/mock-range/-/mock-range-0.2.0-alpha.14.tgz#f873281f056201e73711a8404fad6e40851a24e6"
+  integrity sha512-xNH1BAm3LCNa6X4IDXMEIiEwTvtc/I/ThJ1BfuL4s9mP47hdHLgEadFym7FyYBg6BM+GvvLAvQyaYTJEJN9UXA==
+  dependencies:
+    "@manta-style/core" "^0.2.0-alpha.14"
+    lodash-es "^4.17.11"
+
+"@manta-style/runtime@0.2.0-alpha.14":
+  version "0.2.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@manta-style/runtime/-/runtime-0.2.0-alpha.14.tgz#71ddf937813a670c0c11fa952c1bce411d2d3081"
+  integrity sha512-zfKddvRLa2R8XVm+gTFTQRFLAQsk0nCXff2ejRgqXHNWVvfLGuDHCU4/OAZDUr+WeFHJ8bTAetNhUAyLMzWYtQ==
+  dependencies:
+    "@manta-style/core" "^0.2.0-alpha.14"
+    lodash-es "^4.17.11"
+    tslib "^1.9.3"
+
 "@manta-style/test-helpers@^0.2.0-alpha.14":
   version "0.2.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@manta-style/test-helpers/-/test-helpers-0.2.0-alpha.14.tgz#ff9808026104881c75efdc6461e0f5d777142934"
   integrity sha512-NslRHjPlKIk61HdFg5n+WsKqxUCEjOfkhR91SVHPf2/KKJx2V2/FhN3XthyaDSdKiH662wVeRdILLqiAOnGj1A==
   dependencies:
     prettier "^1.16.1"
+
+"@manta-style/typescript-helpers@0.2.0-alpha.14":
+  version "0.2.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@manta-style/typescript-helpers/-/typescript-helpers-0.2.0-alpha.14.tgz#a886691708345c79fa754e99d880e46d653737b5"
+  integrity sha512-KyBr42hjteHJwG3yfeo+HFjnGMN/K7zN/bshVo9+mJO+BM45WHTD8k3fSRQKRVcqDUOt1TSdGMSQSY3BSUOE6w==
 
 "@types/boxen@^2.1.0":
   version "2.1.0"
@@ -644,6 +674,13 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
+"@types/node-fetch@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.1.5.tgz#94f81fbb0cab2709a5275bbfab7ff93fd7d4bdc0"
+  integrity sha512-GuJUcxJt5VjAmkf23v5P2eBX6bVFp3ZVRFhuZhTLxAytlc8puxGDwdZAmQaV8l7A3mpm/xv14UjhSZIWt1UQAQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*", "@types/node@^10.12.18":
   version "10.12.18"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
@@ -660,6 +697,11 @@ ansi-align@^3.0.0:
   integrity sha512-ZpClVKqXN3RGBmKibdfWzqCY4lnjEuoNzU5T0oEFpfd/z5qJHVarukridD4juLO2FXMiwUQxr9WqQtaYa8XRYw==
   dependencies:
     string-width "^3.0.0"
+
+ansi-colors@^3.2.1:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-3.2.3.tgz#57d35b8686e851e2cc04c403f1c00203976a1813"
+  integrity sha512-LEHHyuhlPY3TmuUYMh2oz89lTShfvgbmzaBcxve9t/9Wuy7Dwf4yoAKcND7KFT1HAQfqZ12qtc+DUrBMeKF9nw==
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -903,6 +945,13 @@ emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
   integrity sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==
+
+enquirer@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/enquirer/-/enquirer-2.3.0.tgz#c362c9d84984ebe854def63caaf12983a16af552"
+  integrity sha512-RNGUbRVlfnjmpxV+Ed+7CGu0rg3MK7MmlW+DW0v7V2zdAUBC1s4BxCRiIAozbYB2UJ+q4D+8tW9UFb11kF72/g==
+  dependencies:
+    ansi-colors "^3.2.1"
 
 escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -1353,6 +1402,11 @@ nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
+
+node-fetch@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
+  integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
 
 node-releases@^1.1.3:
   version "1.1.3"

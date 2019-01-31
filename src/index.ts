@@ -1,13 +1,58 @@
 import { build } from "@manta-style/builder-typescript";
-import fs from "fs";
-import path from "path";
-import process from "process";
-import program from "commander";
-import packageJson from "../package.json";
-import spawn from "cross-spawn";
+import * as fs from "fs";
+import * as path from "path";
+import * as process from "process";
+import * as program from "commander";
+import * as packageJson from "../package.json";
+import * as spawn from "cross-spawn";
 import chalk from "chalk";
+import { prompt } from "enquirer";
 import { findRoot } from "./findRoot";
 import { generateSuperGuideBasedOnFile } from "./superGuide";
+import fetch from "node-fetch";
+
+type NpmIoPackageSearchResult = {
+  package: {
+    name: string;
+    scope: string;
+    version: string;
+    description: string;
+    keywords: string[];
+    date: string;
+    links: {
+      npm: string;
+      homepage?: string;
+      repository?: string;
+      bugs?: string;
+    };
+    author: {
+      name: string;
+      email: string;
+      url: string;
+    };
+    publisher: {
+      username: string;
+      email: string;
+    };
+    maintainers: Array<{ username: string; email: string }>;
+  };
+  flags: {
+    unstable: boolean;
+  };
+  score: {
+    final: number;
+    detail: {
+      quality: number;
+      popularity: number;
+      maintenance: number;
+    };
+  };
+  searchScore: number;
+};
+type NpmIoResult = {
+  total: number;
+  results: NpmIoPackageSearchResult[];
+};
 
 program
   .version(packageJson.version)
@@ -51,7 +96,7 @@ function packageManagerInstall(...bundleNames: string[]) {
   }
 }
 
-function compileMagicTypes() {
+async function compileMagicTypes() {
   // Prereq Check
   if (!inputFile) {
     fatalError("Please specify input file by using `-i` or `--inputFile`.");
@@ -71,7 +116,9 @@ function compileMagicTypes() {
   console.log(
     [
       `  - @manta-style/runtime@${mantaStyleVersion}`,
-      `  - @manta-style/typescript-helpers@${mantaStyleVersion}`
+      `  - @manta-style/typescript-helpers@${mantaStyleVersion}`,
+      `  - @manta-style/mock-example@${mantaStyleVersion}`,
+      `  - @manta-style/mock-range@${mantaStyleVersion}`
     ].join("\n")
   );
   console.log("\n");
@@ -82,6 +129,24 @@ function compileMagicTypes() {
     `@manta-style/mock-example@${mantaStyleVersion}`,
     `@manta-style/mock-range@${mantaStyleVersion}`
   );
+  console.log(chalk.yellowBright("\n- 🔧 Installing additional plugins...\n"));
+
+  const pluginResponse = await fetch(
+    "https://api.npms.io/v2/search?q=scope:manta-style+keywords:mock"
+  );
+
+  const pluginJson: NpmIoResult = await pluginResponse.json();
+  const pluginResult = await prompt({
+    name: "plugins",
+    type: "multiselect",
+    message: "Please choose additional plugins you would like to use",
+    choices: pluginJson.results.map(item => ({
+      name: item.package.name,
+      hint: item.package.description
+    }))
+  });
+  console.log(pluginResult);
+
   console.log(chalk.yellowBright("\n- 📖 Compile Your Type Definitions...\n"));
 
   const result = build({
@@ -97,6 +162,7 @@ function compileMagicTypes() {
       "\n- 🎉 Done, now you can use your type definitions at runtime. \n"
     )
   );
+
   generateSuperGuideBasedOnFile(path.resolve(inputFile));
 
   console.log(
@@ -106,8 +172,7 @@ function compileMagicTypes() {
   );
 }
 
-try {
-  compileMagicTypes();
-} catch (ex) {
+compileMagicTypes().catch(ex => {
   console.error(ex);
-}
+  process.exit(1);
+});
