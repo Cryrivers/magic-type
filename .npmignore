@@ -4,3 +4,4 @@ rollup.config.js
 tsconfig.json
 yarn.lock
 .gitattributes
+.DS_Store

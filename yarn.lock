@@ -592,31 +592,31 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@manta-style/builder-typescript@^0.2.0-alpha.17":
-  version "0.2.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@manta-style/builder-typescript/-/builder-typescript-0.2.0-alpha.17.tgz#3deac61e53c0742f73a0bd4523fcbc0d399a1021"
-  integrity sha512-8Z5NuTG4gCt2k7UnGa/cBxDwsu3GczOq5UxwaLIWIm5uQKgVwZYMO5SwopAlT58nxRxbnbBzrCmwWGbatsXSRA==
+"@manta-style/builder-typescript@^0.2.0-alpha.18":
+  version "0.2.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@manta-style/builder-typescript/-/builder-typescript-0.2.0-alpha.18.tgz#e93e0f3141a02d71b6e5c8749ed78bd49f069c3a"
+  integrity sha512-jCGDNdhR+p4/xQzQmB7D/sLWk/rHX8Lmd7PZm1XtoXpdBFfUsfsQ1vUUglbIkrrJvm/YY+4Qx0/+JaDC5TOZyA==
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/plugin-transform-modules-commonjs" "^7.2.0"
     "@babel/preset-env" "^7.3.1"
-    "@manta-style/core" "^0.2.0-alpha.17"
-    "@manta-style/test-helpers" "^0.2.0-alpha.17"
+    "@manta-style/core" "^0.2.0-alpha.18"
+    "@manta-style/test-helpers" "^0.2.0-alpha.18"
     fs-extra "^7.0.1"
     glob "^7.1.3"
     typescript "^3.2.4"
 
-"@manta-style/core@^0.2.0-alpha.17":
-  version "0.2.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@manta-style/core/-/core-0.2.0-alpha.17.tgz#a92437809f2c5987f103ac5c5ddce38acbbcdb35"
-  integrity sha512-hE4yGxo/QrC5de596otiZ2LBJGW30ofrWqOtHU/lhDpL53V6mVdNfverM0cdO7wua230hxdrnuxw5v9w9cKCDg==
+"@manta-style/core@^0.2.0-alpha.18":
+  version "0.2.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@manta-style/core/-/core-0.2.0-alpha.18.tgz#8e35357ca46767b0e868bc3c661983852079c9b3"
+  integrity sha512-kUFpZVfjSXhpy7SDOD9AVZwPYy4jpWghF3FX24uj2sBQNcLwZvCcAu99GCFkvAGrGtBtKEO2vR2pl1p4mVpchw==
   dependencies:
     lodash-es "^4.17.11"
 
-"@manta-style/test-helpers@^0.2.0-alpha.17":
-  version "0.2.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@manta-style/test-helpers/-/test-helpers-0.2.0-alpha.17.tgz#6a510298d332e75a4f2398400127f586d53ce333"
-  integrity sha512-b+KHJ++ZM+WlcyBBfTaq/w1+sHGOCOQ0xzzIPr8lZTy+1jdybLUaRiU+f1uuRRx3xbfGBgxE3IttBhIWd06ylg==
+"@manta-style/test-helpers@^0.2.0-alpha.18":
+  version "0.2.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@manta-style/test-helpers/-/test-helpers-0.2.0-alpha.18.tgz#cabb199d9a84b4645a21a1bdf80bf25619bb4308"
+  integrity sha512-x+UZ3mFEUzlNxCm/8iVkyBJu8z7+BhYv2OqkRM4oLj8LWGD+oDhv2RyMchad5xeEKzR0Mwf4/UT3si1/0OhF/A==
   dependencies:
     prettier "^1.16.1"
 
