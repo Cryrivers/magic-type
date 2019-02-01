@@ -1,10 +1,10 @@
 import { build } from "@manta-style/builder-typescript";
-import * as fs from "fs";
-import * as path from "path";
-import * as process from "process";
-import * as program from "commander";
-import * as packageJson from "../package.json";
-import * as spawn from "cross-spawn";
+import fs from "fs";
+import path from "path";
+import process from "process";
+import program from "commander";
+import packageJson from "../package.json";
+import spawn from "cross-spawn";
 import chalk from "chalk";
 import { prompt } from "enquirer";
 import { findRoot } from "./findRoot";
@@ -83,14 +83,16 @@ function fatalError(message: string): never {
   return process.exit(1);
 }
 
-function packageManagerInstall(...bundleNames: string[]) {
+function packageManagerInstall(bundleNames: string[], version: string) {
   const packageManager = detectPackageManager();
+  const bundleNamesWithVersion = bundleNames.map(item => `${item}@${version}`);
+
   if (packageManager === "yarn") {
-    spawn.sync("yarn", ["add", ...bundleNames, "--silent"], {
+    spawn.sync("yarn", ["add", ...bundleNamesWithVersion, "--silent"], {
       stdio: "inherit"
     });
   } else {
-    spawn.sync("npm", ["install", ...bundleNames, "--silent"], {
+    spawn.sync("npm", ["install", ...bundleNamesWithVersion, "--silent"], {
       stdio: "inherit"
     });
   }
@@ -124,12 +126,16 @@ async function compileMagicTypes() {
   console.log("\n");
 
   packageManagerInstall(
-    `@manta-style/runtime@${mantaStyleVersion}`,
-    `@manta-style/typescript-helpers@${mantaStyleVersion}`,
-    `@manta-style/mock-example@${mantaStyleVersion}`,
-    `@manta-style/mock-range@${mantaStyleVersion}`
+    [
+      `@manta-style/runtime`,
+      `@manta-style/typescript-helpers`,
+      `@manta-style/mock-example`,
+      `@manta-style/mock-range`
+    ],
+    mantaStyleVersion
   );
-  console.log(chalk.yellowBright("\n- 🔧 Installing additional plugins...\n"));
+
+  console.log("\n");
 
   const pluginResponse = await fetch(
     "https://api.npms.io/v2/search?q=scope:manta-style+keywords:mock"
@@ -145,7 +151,13 @@ async function compileMagicTypes() {
       hint: item.package.description
     }))
   });
-  console.log(pluginResult);
+  const plugins: string[] = (pluginResult as any).plugins;
+  if (plugins.length > 0) {
+    console.log(
+      chalk.yellowBright("\n- 🕹️ Installing additional plugins...\n")
+    );
+    packageManagerInstall(plugins, mantaStyleVersion);
+  }
 
   console.log(chalk.yellowBright("\n- 📖 Compile Your Type Definitions...\n"));
 

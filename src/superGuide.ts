@@ -1,8 +1,8 @@
-import * as ts from "typescript";
-import * as fs from "fs";
-import * as path from "path";
+import ts from "typescript";
+import fs from "fs";
+import path from "path";
 import { highlight } from "cli-highlight";
-import * as boxen from "boxen";
+import boxen from "boxen";
 
 export function generateSuperGuideBasedOnFile(filePath: string) {
   const code = fs.readFileSync(filePath, { encoding: "utf8" });

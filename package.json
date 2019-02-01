@@ -1,6 +1,6 @@
 {
   "name": "magic-type",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "main": "index.js",
   "license": "MIT",
   "bin": {
@@ -10,7 +10,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "@manta-style/builder-typescript": "^0.2.0-alpha.14",
+    "@manta-style/builder-typescript": "^0.2.0-alpha.17",
     "boxen": "^2.1.0",
     "chalk": "^2.4.2",
     "cli-highlight": "^2.0.0",
