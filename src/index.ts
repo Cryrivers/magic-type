@@ -8,8 +8,16 @@ import spawn from "cross-spawn";
 import chalk from "chalk";
 import { prompt } from "enquirer";
 import { findRoot } from "./findRoot";
-import { generateSuperGuideBasedOnFile } from "./superGuide";
+import {
+  generateSuperGuideBasedOnFile,
+  copyMantaStyleImport
+} from "./superGuide";
 import fetch from "node-fetch";
+
+const preinstalledPlugins = [
+  "@manta-style/mock-example",
+  "@manta-style/mock-range"
+];
 
 type NpmIoPackageSearchResult = {
   package: {
@@ -118,45 +126,50 @@ async function compileMagicTypes() {
   console.log(
     [
       `  - @manta-style/runtime@${mantaStyleVersion}`,
-      `  - @manta-style/typescript-helpers@${mantaStyleVersion}`,
-      `  - @manta-style/mock-example@${mantaStyleVersion}`,
-      `  - @manta-style/mock-range@${mantaStyleVersion}`
+      `  - @manta-style/typescript-helpers@${mantaStyleVersion}`
     ].join("\n")
   );
   console.log("\n");
 
   packageManagerInstall(
-    [
-      `@manta-style/runtime`,
-      `@manta-style/typescript-helpers`,
-      `@manta-style/mock-example`,
-      `@manta-style/mock-range`
-    ],
+    [`@manta-style/runtime`, `@manta-style/typescript-helpers`],
     mantaStyleVersion
   );
 
   console.log("\n");
 
-  const pluginResponse = await fetch(
-    "https://api.npms.io/v2/search?q=scope:manta-style+keywords:mock"
-  );
-
-  const pluginJson: NpmIoResult = await pluginResponse.json();
-  const pluginResult = await prompt({
-    name: "plugins",
-    type: "multiselect",
-    message: "Please choose additional plugins you would like to use",
-    choices: pluginJson.results.map(item => ({
-      name: item.package.name,
-      hint: item.package.description
-    }))
+  const mock = await prompt({
+    name: "useMock",
+    type: "confirm",
+    message: "Do you want to use mock feature?"
   });
-  const plugins: string[] = (pluginResult as any).plugins;
-  if (plugins.length > 0) {
-    console.log(
-      chalk.yellowBright("\n- 🕹️ Installing additional plugins...\n")
+
+  const { useMock } = mock as any;
+  const plugins: string[] = useMock ? [...preinstalledPlugins] : [];
+
+  if (useMock) {
+    const pluginResponse = await fetch(
+      "https://api.npms.io/v2/search?q=scope:manta-style+keywords:mock"
     );
-    packageManagerInstall(plugins, mantaStyleVersion);
+
+    const pluginJson: NpmIoResult = await pluginResponse.json();
+    const pluginResult = await prompt({
+      name: "plugins",
+      type: "multiselect",
+      message: "Please choose additional plugins you would like to use",
+      choices: pluginJson.results.map(item => ({
+        name: item.package.name,
+        hint: item.package.description
+      }))
+    });
+    const additionalPlugins: string[] = (pluginResult as any).plugins;
+    plugins.push(...additionalPlugins);
+    if (plugins.length > 0) {
+      console.log(
+        chalk.yellowBright("\n- 🕹️ Installing additional plugins...\n")
+      );
+      packageManagerInstall(plugins, mantaStyleVersion);
+    }
   }
 
   console.log(chalk.yellowBright("\n- 📖 Compile Your Type Definitions...\n"));
@@ -175,7 +188,16 @@ async function compileMagicTypes() {
     )
   );
 
-  generateSuperGuideBasedOnFile(path.resolve(inputFile));
+  generateSuperGuideBasedOnFile(path.resolve(inputFile), plugins);
+
+  if (useMock) {
+    copyMantaStyleImport(plugins);
+    console.log(
+      chalk.yellowBright(
+        "\n- 📋 Import statements for plugins have already been copied to the clipboard.\n"
+      )
+    );
+  }
 
   console.log(
     chalk.yellowBright(

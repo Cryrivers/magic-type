@@ -3,8 +3,42 @@ import fs from "fs";
 import path from "path";
 import { highlight } from "cli-highlight";
 import boxen from "boxen";
+import camelCase from "lodash.camelcase";
+import * as copyPaste from "copy-paste";
 
-export function generateSuperGuideBasedOnFile(filePath: string) {
+function makePluginVariableName(item: string) {
+  return camelCase(item.replace("@manta-style/", ""));
+}
+
+function generateMantaStyleImport(enabledPlugins: string[]) {
+  const hasPlugins = enabledPlugins.length > 0;
+  return hasPlugins
+    ? `/* Import plugins */
+import { enablePlugins } from '@manta-style/core';
+${enabledPlugins
+  .map(item => `import ${makePluginVariableName(item)} from '${item}';`)
+  .join("\n")}
+
+/* Enable plugins selected */
+enablePlugins([\n${enabledPlugins
+        .map(
+          item =>
+            `  { name: '${item}', module: ${makePluginVariableName(item)} }`
+        )
+        .join(", \n")}\n]);
+
+`
+    : "";
+}
+
+export function copyMantaStyleImport(enabledPlugins: string[]) {
+  copyPaste.copy(generateMantaStyleImport(enabledPlugins));
+}
+
+export function generateSuperGuideBasedOnFile(
+  filePath: string,
+  enabledPlugins: string[]
+) {
   const code = fs.readFileSync(filePath, { encoding: "utf8" });
   const sourceFile = ts.createSourceFile(
     filePath,
@@ -26,14 +60,16 @@ export function generateSuperGuideBasedOnFile(filePath: string) {
     console.log(
       boxen(
         highlight(
-          `import { ${typeName} } from './${moduleName}';
-    
-// Use Magic Types as normal TypeScript types
+          `${generateMantaStyleImport(enabledPlugins)}
+/* Import your magic types */
+import { ${typeName} } from './${moduleName}';
+
+/* Use Magic Types as normal TypeScript types */
 type MyType = {
     key: ${typeName}
 };
     
-// Use Magic Type at Runtime
+/* Use Magic Type at Runtime */
 
 // Check if user input matches ${typeName}
 function checkMyInput(input: any) {
